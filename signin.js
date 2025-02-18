@@ -6,8 +6,7 @@ async function validateTimestamp() {
   const timestamp = urlParams.get("t");
 
   if (!timestamp) {
-    alert("Invalid access. Please scan the QR code to sign in.");
-    window.location.href = "index.html";
+    window.location.href = "expired.html";
     return false;
   }
 
@@ -17,22 +16,32 @@ async function validateTimestamp() {
     const activeTimestamp = activeConfig?.activeTimestamp;
 
     if (!activeTimestamp || timestamp !== activeTimestamp) {
-      alert(
-        "This QR code has expired. Please scan the latest QR code to sign in."
-      );
-      window.location.href = "index.html";
+      window.location.href = "expired.html";
       return false;
     }
 
     return true;
   } catch (error) {
     console.error("Error validating timestamp:", error);
-    alert("An error occurred. Please try again.");
-    window.location.href = "index.html";
+    window.location.href = "expired.html";
     return false;
   }
 }
+ storeNumberInput.value = "274";
 
+  // Prevent deleting or modifying the prefix
+  storeNumberInput.addEventListener("input", () => {
+    if (!storeNumberInput.value.startsWith("274")) {
+      storeNumberInput.value = "274";
+    }
+  });
+
+  // Move cursor to the end of the input field when focused
+  storeNumberInput.addEventListener("focus", () => {
+    const value = storeNumberInput.value;
+    storeNumberInput.value = ''; // Temporarily clear the value
+    storeNumberInput.value = value; // Restore the value to move the cursor to the end
+  });
 // Get form elements
 const form = document.getElementById("registerForm");
 const inputs = form.querySelectorAll(".input");
