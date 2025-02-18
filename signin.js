@@ -27,7 +27,9 @@ async function validateTimestamp() {
     return false;
   }
 }
- storeNumberInput.value = "274";
+  // --- START: Prefix "274" Implementation ---
+  // Set the initial value of the store number input to "274"
+  storeNumberInput.value = "274";
 
   // Prevent deleting or modifying the prefix
   storeNumberInput.addEventListener("input", () => {
@@ -42,6 +44,7 @@ async function validateTimestamp() {
     storeNumberInput.value = ''; // Temporarily clear the value
     storeNumberInput.value = value; // Restore the value to move the cursor to the end
   });
+  // --- END: Prefix "274" Implementation ---
 // Get form elements
 const form = document.getElementById("registerForm");
 const inputs = form.querySelectorAll(".input");
